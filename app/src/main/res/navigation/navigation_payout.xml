@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_payout"
+    app:startDestination="@id/fragmentPayout"
+    >
+
+    <fragment
+        android:id="@+id/fragmentPayout"
+        android:name="com.seatgeek.android.payout.view.PayoutFragment"
+        android:label="PayoutFragment"
+        >
+
+        <argument
+            android:name="args"
+            app:argType="com.seatgeek.contract.navigation.destination.PayoutNavDestination$Args"
+            />
+
+    </fragment>
+
+</navigation>

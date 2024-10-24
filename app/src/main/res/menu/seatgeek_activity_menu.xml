@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:id="@+id/menuGroup">
+        <item
+            android:id="@+id/transactionHistory"
+            android:actionLayout="@layout/sge_layout_menu_fragment_seatgeek"
+            android:title="@string/sg_title_transaction_history"
+            app:actionLayout="@layout/sge_layout_menu_fragment_seatgeek"
+            app:showAsAction="ifRoom" />
+
+        <item
+            android:id="@+id/fetchUpcomingEvent"
+            android:title="@string/fetch_upcoming_event"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/setToken"
+            android:title="@string/set_existing_seatgeek_token"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/logout"
+            android:title="@string/log_out"
+            app:showAsAction="never" />
+
+    </group>
+</menu>

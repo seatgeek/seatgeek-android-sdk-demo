@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_wallet_manager_bottom_sheet"
+    app:startDestination="@id/fragmentWalletManagerBottomSheet">
+
+    <fragment
+        android:id="@+id/fragmentWalletManagerBottomSheet"
+        android:name="com.seatgeek.wallet.view.manager.WalletManagerBottomSheetFragment"
+        android:label="WalletManagerFragment">
+
+        <argument
+            android:name="eventId"
+            android:defaultValue="-1L"
+            app:argType="long" />
+
+    </fragment>
+
+</navigation>

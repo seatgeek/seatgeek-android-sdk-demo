@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_sg_bulk_ticket_sale_listing"
+    app:startDestination="@id/fragmentBulkTicketSaleListing">
+
+    <fragment
+        android:id="@+id/fragmentBulkTicketSaleListing"
+        android:name="com.seatgeek.android.bulkticketsale.listing.view.BulkTicketSaleListingFragment"
+        android:label="BulkTicketSaleListingFragment" />
+
+</navigation>

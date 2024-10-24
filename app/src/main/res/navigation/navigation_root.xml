@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_root"
+    app:startDestination="@id/go_back">
+
+    <include app:graph="@navigation/navigation_parties_authentication_redirect" />
+    <include app:graph="@navigation/navigation_parties_creation" />
+    <include app:graph="@navigation/navigation_parties_share" />
+    <include app:graph="@navigation/navigation_parties_overview" />
+    <include app:graph="@navigation/navigation_parties_remove_guests" />
+    <include app:graph="@navigation/navigation_payout" />
+    <include app:graph="@navigation/navigation_sg_bulk_ticket_sale_listing" />
+    <include app:graph="@navigation/navigation_wallet_manager_bottom_sheet" />
+
+    <fragment
+        android:id="@+id/go_back"
+        android:name="com.seatgeek.navigation.view.EmptyFragment"
+        android:label="EmptyFragment" />
+
+</navigation>
