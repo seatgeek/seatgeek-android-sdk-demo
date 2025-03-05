@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.seatgeek.android.sdk.sample"
-        minSdk = 27
+        minSdk = 29
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -27,6 +27,7 @@ android {
         }
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -40,6 +41,7 @@ dependencies {
     implementation(libs.seatgeek.sdk) {
         exclude(group = "org.jetbrains", module = "annotations-java5")
     }
+    coreLibraryDesugaring(libs.android.tools.desugar)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
