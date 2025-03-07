@@ -16,6 +16,11 @@
             app:showAsAction="never" />
 
         <item
+            android:id="@+id/getSgUser"
+            android:title="@string/set_existing_seatgeek_token"
+            app:showAsAction="never" />
+
+        <item
             android:id="@+id/setToken"
             android:title="@string/set_existing_seatgeek_token"
             app:showAsAction="never" />

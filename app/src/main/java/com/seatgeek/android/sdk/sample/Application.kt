@@ -5,10 +5,13 @@ import android.app.Application
 import android.net.Uri
 import com.seatgeek.android.sdk.SeatGeek
 import com.seatgeek.android.sdk.SeatGeekBuilder
+import com.seatgeek.android.sdk.actions.SdkUserActionCallbacks
+import com.seatgeek.android.sdk.analytics.callback.SdkAnalyticsThirdPartyClient
 import com.seatgeek.android.sdk.auth.OAuthClient
 import com.seatgeek.android.sdk.ticket.TicketClient
 import com.seatgeek.domain.common.constraint.ProtectedString
 import com.seatgeek.domain.common.model.auth.AccessToken
+import com.seatgeek.domain.common.model.user.SgUser
 
 class SampleApplication : Application() {
 
@@ -27,7 +30,7 @@ class SampleApplication : Application() {
             .setInstanceName(instanceName)
             .setRedirectUri(redirectUri)
             .additionalScopes(additionalScopes)
-            .disableCrmIdCreation() // If you would like to disable automatic CRM ID creation for users signing in to your app
+//            .disableCrmIdCreation() // If you would like to disable automatic CRM ID creation for users signing in to your app
             .build()
     }
 
@@ -69,5 +72,25 @@ class SampleApplication : Application() {
 
     internal fun unregisterUpcomingEventChangeListeners(listener: TicketClient.UpcomingEventChangeListener) {
         seatgeek.getTicketClient().unregisterUpcomingEventChangeListeners()
+    }
+
+    internal fun getSgUser(): SgUser? {
+        return seatgeek.getOAuthClient().getSgUser()
+    }
+
+    internal fun registerAnalyticsCallback(callback: SdkAnalyticsThirdPartyClient.Callback) {
+        seatgeek.getAnalyticsClient().registerAnalyticsCallback(callback)
+    }
+
+    internal fun unregisterAnalyticsCallback(callback: SdkAnalyticsThirdPartyClient.Callback) {
+        seatgeek.getAnalyticsClient().unregisterAnalyticsCallback(callback)
+    }
+
+    internal fun registerUserActionCallbacks(callbacks: SdkUserActionCallbacks) {
+        seatgeek.getUserActionsClient().registerUserActionCallbacks(callbacks)
+    }
+
+    internal fun unregisterUserActionCallbacks(callbacks: SdkUserActionCallbacks) {
+        seatgeek.getUserActionsClient().unregisterUserActionCallbacks(callbacks)
     }
 }

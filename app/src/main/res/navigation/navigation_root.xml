@@ -4,7 +4,6 @@
     android:id="@+id/navigation_root"
     app:startDestination="@id/go_back">
 
-    <include app:graph="@navigation/navigation_parties_authentication_redirect" />
     <include app:graph="@navigation/navigation_parties_creation" />
     <include app:graph="@navigation/navigation_parties_share" />
     <include app:graph="@navigation/navigation_parties_overview" />
