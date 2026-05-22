@@ -20,10 +20,18 @@ class SampleApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        val instanceName = ""
-        val redirectUri = Uri.parse("sg-<instanceName>://oauth")
-        val clientId = ""
-        val additionalScopes = emptyArray<String>()
+        val instanceName = "oilers"
+        val redirectUri = Uri.parse("sg-rogers-place://oauth")
+        val clientId = "MzQ1Mzk3OTB8MTc3ODc4NDkzMC40NDMwOTk1"
+        val additionalScopes = arrayOf<String>(
+            "ssssmanage-oilers", "view-oilers-crm-id",
+            "ssss manage-user-payment-methods", "manage-user-payout-methods",
+            "offline_access", "ssss phone",
+            "read-user-phone", "update-user-phone",
+            "read-user-contact-verifications", "ssss read-user-email",
+            "read-user-first-name", "read-user-full-name",
+            "read-user-last-name",
+        )
 
         seatgeek = SeatGeekBuilder(this)
             .setClientId(clientId)

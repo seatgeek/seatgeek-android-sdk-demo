@@ -35,7 +35,7 @@
 
                 <data
                     android:host="oauth"
-                    android:scheme="sg-<instanceName>" />
+                    android:scheme="sg-rogers-place" />
             </intent-filter>
         </activity>
         <activity
