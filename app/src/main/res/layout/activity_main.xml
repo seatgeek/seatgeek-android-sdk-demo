@@ -39,9 +39,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/open_seatgeek_sdk"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/hostSignInBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/greetingTxt" />
+
+    <Button
+        android:id="@+id/hostSignInBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/host_sign_in"
+        app:layout_constraintBottom_toTopOf="@id/hostAuthStatusTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/runSdkBtn" />
+
+    <TextView
+        android:id="@+id/hostAuthStatusTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:gravity="center"
+        android:text="@string/host_signed_out"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hostSignInBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

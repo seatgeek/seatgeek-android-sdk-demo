@@ -23,10 +23,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--
+            AppAuth's redirect receiver, shared by your app's own login and the SeatGeek SDK: the app
+            has one copy of AppAuth, so it has one RedirectUriReceiverActivity. AppAuth's manifest
+            registers it for your scheme (the appAuthRedirectScheme placeholder in build.gradle.kts);
+            this declaration merges a second intent-filter into it for the SDK's redirect URI
+            (yourAppScheme://oauth, set in SampleApplication). AppAuth hands each redirect back to the
+            flow that is in progress, so the two logins don't interfere.
+        -->
         <activity
-            android:name="com.seatgeek.android.sdk.oauth.SeatGeekOAuthReceiverActivity"
-            android:exported="true"
-            android:launchMode="singleTask">
+            android:name="net.openid.appauth.RedirectUriReceiverActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -35,9 +42,19 @@
 
                 <data
                     android:host="oauth"
-                    android:scheme="sg-<instanceName>" />
+                    android:scheme="yourAppScheme" />
             </intent-filter>
         </activity>
+        <!--
+            SeatGeek SDK's OAuth receiver. The SDK starts it by explicit intent, so it needs no
+            intent-filter. In OIDC mode the browser redirect (yourAppScheme://oauth) is caught by
+            RedirectUriReceiverActivity above. Do not give this activity an intent-filter for that
+            scheme: two activities matching the redirect would break it.
+        -->
+        <activity
+            android:name="com.seatgeek.android.sdk.oauth.SeatGeekOAuthReceiverActivity"
+            android:exported="false"
+            android:launchMode="singleTask" />
         <activity
             android:name=".SeatGeekActivity"
             android:exported="false"
