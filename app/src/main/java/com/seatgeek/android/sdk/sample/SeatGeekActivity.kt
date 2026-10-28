@@ -8,20 +8,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.appbar.MaterialToolbar
+import com.seatgeek.android.sdk.actions.SdkUserActionCallbacks
+import com.seatgeek.android.sdk.analytics.callback.SdkAnalyticsCallbackEvent
+import com.seatgeek.android.sdk.analytics.callback.SdkAnalyticsThirdPartyClient
 import com.seatgeek.android.sdk.auth.OAuthClient
 import com.seatgeek.android.sdk.ticket.TicketClient
 import com.seatgeek.domain.common.model.auth.AccessToken
 import com.seatgeek.domain.common.model.event.UpcomingEventResponse
-import com.seatgeek.domain.common.model.user.AuthUser
 import com.seatgeek.domain.common.model.user.SgUser
 
 class SeatGeekActivity : AppCompatActivity() {
 
     private val authStatusChangeCallback = object : OAuthClient.AuthStatusChangeCallback {
-        override fun onAuthStatusChange(newUser: AuthUser?) {
-            updateMenuVisibility(newUser != null)
-        }
-
         override fun onSgUserStatusChange(newUser: SgUser?) {
             updateMenuVisibility(newUser != null)
         }
@@ -37,6 +35,18 @@ class SeatGeekActivity : AppCompatActivity() {
         }
     }
 
+    private val analyticsCallback = object : SdkAnalyticsThirdPartyClient.Callback {
+        override fun onEvent(event: SdkAnalyticsCallbackEvent) {
+            //handle the event
+        }
+    }
+
+    private val userActionCallbacks = object : SdkUserActionCallbacks {
+        override fun authorizationCanceled() {
+            //react to the canceled authorization action
+        }
+    }
+
     private val sampleApp: SampleApplication by lazy { application as SampleApplication }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +55,7 @@ class SeatGeekActivity : AppCompatActivity() {
         setContentView(R.layout.seatgeek_activity)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.seatgeekActivityContainer)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets
         }
 
@@ -91,6 +101,11 @@ class SeatGeekActivity : AppCompatActivity() {
                     true
                 }
 
+                R.id.getSgUser -> {
+                    sampleApp.getSgUser()
+                    true
+                }
+
                 else -> false
             }
         }
@@ -99,6 +114,8 @@ class SeatGeekActivity : AppCompatActivity() {
     private fun registerListeners() {
         sampleApp.registerUpcomingEventChangeListener(upcomingEventChangeListener)
         sampleApp.registerAuthStatusChangeCallback(authStatusChangeCallback)
+        sampleApp.registerAnalyticsCallback(analyticsCallback)
+        sampleApp.registerUserActionCallbacks(userActionCallbacks)
     }
 
     private fun updateMenuVisibility(visible: Boolean) {
@@ -110,5 +127,7 @@ class SeatGeekActivity : AppCompatActivity() {
         super.onDestroy()
         sampleApp.unregisterAuthStatusChangeCallback(authStatusChangeCallback)
         sampleApp.unregisterUpcomingEventChangeListeners(upcomingEventChangeListener)
+        sampleApp.unregisterAnalyticsCallback(analyticsCallback)
+        sampleApp.unregisterUserActionCallbacks(userActionCallbacks)
     }
 }

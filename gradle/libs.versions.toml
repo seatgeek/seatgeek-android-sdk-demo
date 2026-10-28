@@ -1,6 +1,8 @@
 [versions]
-agp = "8.6.0"
-kotlin = "1.9.0"
+# Bumped to match what SeatGeek SDK 5.3.0 is built with. compileSdk 37 (required by the SDK's AAR
+# metadata) needs a modern AGP; AGP 8.6 cannot read the installed android-37 platform.
+agp = "9.4.0"
+kotlin = "2.4.10"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -9,7 +11,9 @@ appcompat = "1.7.0"
 material = "1.10.0"
 activity = "1.9.2"
 constraintlayout = "2.1.4"
-seatgeek-sdk = "4.7.0"
+seatgeek-sdk = "5.3.0"
+# SDK 5.3.0 requires core library desugaring with desugar_jdk_libs >= 2.1.5.
+desugar-jdk = "2.1.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -20,6 +24,7 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+android-tools-desugar = { group = "com.android.tools", name="desugar_jdk_libs", version.ref = "desugar-jdk"}
 
 seatgeek-sdk = { group = "com.seatgeek.android.sdk", name = "sdk", version.ref = "seatgeek-sdk"}
 

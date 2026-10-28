@@ -3,6 +3,7 @@
     <string name="log_out">Log out</string>
     <string name="fetch_upcoming_event">Fetch upcoming event</string>
     <string name="set_existing_seatgeek_token">Set existing SeatGeek token</string>
+    <string name="get_sg_user">Get SgUser</string>
     <string name="home">Home</string>
     <string name="hi_there">Hi there!</string>
     <string name="open_seatgeek_sdk">Open SeatGeek SDK</string>

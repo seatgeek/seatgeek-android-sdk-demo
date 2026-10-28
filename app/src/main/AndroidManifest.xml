@@ -23,21 +23,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--
+            SeatGeek SDK's OAuth receiver. The SDK starts it by explicit intent, so it needs no
+            intent-filter. In OIDC mode the browser redirect (yourAppScheme://oauth) is caught by
+            AppAuth's RedirectUriReceiverActivity, which the SDK bundles and registers for the
+            appAuthRedirectScheme placeholder in build.gradle.kts. Do not give this activity an
+            intent-filter for that scheme: two activities matching the redirect would break it.
+        -->
         <activity
             android:name="com.seatgeek.android.sdk.oauth.SeatGeekOAuthReceiverActivity"
-            android:exported="true"
-            android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="oauth"
-                    android:scheme="sg-<instanceName>" />
-            </intent-filter>
-        </activity>
+            android:exported="false"
+            android:launchMode="singleTask" />
         <activity
             android:name=".SeatGeekActivity"
             android:exported="false"
